@@ -38,6 +38,13 @@
         <input type="checkbox" name="extras[]" value="garagem">Garagem <br>
         <input type="checkbox" name="extras[]" value="jardim">Jardim <br>
 
+        <input type="text" name="endereco[rua]" value=""><br>
+        <input type="text" name="endereco[cidade]" value=""> <br>
+        <input type="text" name="endereco[estado]" value=""> <br>
+
+        <input type="hidden"  name = "id" value="123">
+
+        <!-- futuramente: cross validation token -->
         <input type="submit" value="Enviar">
     </form>
 
