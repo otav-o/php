@@ -15,18 +15,18 @@
     </header>
 
     <main>
-        <form method="POST">
+        <form method="POST" action="valores.php">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome">
+                <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
             </div>
             <div class="mb-3">
                 <label for="endereco" class="form-label">Endereço</label>
-                <textarea class="form-control" id="endereco" rows="3"></textarea>
+                <textarea class="form-control" id="endereco" rows="3" name="endereco"></textarea>
             </div>
 
             <select name="ocupacao" class="form-select" aria-label="Selecione seu cargo">
