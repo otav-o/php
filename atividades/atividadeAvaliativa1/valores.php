@@ -11,11 +11,85 @@
 
 <body style="padding: 50px;">
   <header>
-    <h1 class="h1">Cadastro de pessoa</h1>
+    <h1 class="h1">Valores inseridos</h1>
   </header>
 
-  <main>
+  <?php
+  function checarSeVazio($valor): string
+  {
+    return $valor == null ? 'Vazio' : $valor;
+  }
+  ?>
 
+  <main>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Dado</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Nome</th>
+          <td><?= ucwords(strtolower(checarSeVazio($_POST['nome']))) ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td><?= checarSeVazio(strtolower($_POST['email'])) ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Endereço</th>
+          <td><?= ucwords(strtolower(checarSeVazio($_POST['endereco']))) ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Profissão</th>
+          <td><?= checarSeVazio($_POST['ocupacao']) ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Gênero</th>
+          <td><?= checarSeVazio($_POST['genero']) ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Senha</th>
+          <td><?= checarSeVazio($_POST['senha']) ?></td>
+          <td>
+            <?php
+            if (checarSeVazio($_POST['senha']) !== 'Vazio') {
+              if (strlen($_POST['senha']) < 6) {
+                echo 'Senha fraca';
+              } else {
+                echo 'Senha forte';
+              }
+            } else {
+              echo 'Senha não inserida';
+            }
+            ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Confirmação de senha</th>
+          <td><?= checarSeVazio($_POST['confirmacaoSenha']) ?></td>
+          <td>
+            <?php
+            if (checarSeVazio($_POST['senha']) !== 'Vazio' && checarSeVazio($_POST['confirmacaoSenha']) !== 'Vazio') {
+              if ($_POST['senha'] === $_POST['confirmacaoSenha']) {
+                echo 'Senhas iguais';
+              } else {
+                echo 'Senhas diferentes';
+              }
+            } else {
+              echo 'Alguma senha não foi inserida';
+            }
+            ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Mensagem</th>
+          <td><?= checarSeVazio($_POST['mensagem']) ?></td>
+        </tr>
+      </tbody>
+
+    </table>
 
   </main>
   <footer>

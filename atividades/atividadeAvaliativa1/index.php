@@ -42,11 +42,10 @@
             <br>
             <select name="genero" id="genero" class="form-select">
                 <option selected>Gênero</option>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-                <option value="P">Prefiro não informar</option>
-                <option value="O">Outro</option>
-                <!-- TODO: inserir "Outro" e input text -->
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Prefiro não informar">Prefiro não informar</option>
+                <option value="Outro">Outro</option>
             </select>
             <br>
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -64,7 +63,7 @@
             <h3 class="h3">Fale conosco</h3>
             <div class="mb-3">
                 <label for="mensagem" class="form-label">Mensagem</label>
-                <textarea class="form-control" id="mensagem" rows="3"></textarea>
+                <textarea name="mensagem" class="form-control" id="mensagem" rows="3"></textarea>
             </div>
 
             Deseja receber nossas promoções?
@@ -84,20 +83,21 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Senha</span>
-                <input type="password" class="form-control" aria-label="Senha" aria-describedby="inputGroup-sizing-default">
+                <input name="senha" type="password" class="form-control" aria-label="Senha" aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Confirmar</span>
-                <input type="password" class="form-control" aria-label="Senha" aria-describedby="inputGroup-sizing-default">
+                <input name="confirmacaoSenha" type="password" class="form-control" aria-label="Senha" aria-describedby="inputGroup-sizing-default">
             </div>
 
-            <button type="button" class="btn btn-success">Enviar</button>
+            <input type="submit" class="btn btn-success" value="Enviar">
 
         </form>
 
 
     </main>
     <footer>
+
         <small>Primeira atividade avaliativa de TADS - Otávio Dioscânio 15/03/2022</small>
     </footer>
 
