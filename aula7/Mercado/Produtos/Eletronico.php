@@ -1,9 +1,14 @@
 <?php
 
-class Hardware extends Produto
-{
+namespace Mercado\Produtos;
 
-  public function __construct($codigo, $quantidade, $precoTotal, $descricao)
+use Mercado\Produto;
+
+require_once "Produto.php";
+
+class Eletronico extends Produto
+{
+  public function __construct($codigo, $descricao, $precoTotal, $quantidade)
   {
     $this->setCodigo($codigo);
     $this->setQuantidade($quantidade);

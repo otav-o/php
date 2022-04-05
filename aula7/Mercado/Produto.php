@@ -1,4 +1,7 @@
 <?php
+
+namespace Mercado;
+
 abstract class Produto
 {
   private int $codigo;
