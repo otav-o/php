@@ -9,13 +9,15 @@
 
   <?php
 
-  require_once "DAOs\AlunoDAO.php";
+  require_once "DAOs/AlunoDAO.php";
 
   use DAO\AlunoDAO;
 
   $aluno = new AlunoDAO(1, 'Joaozinho');
 
   $db = new mysqli("localhost", "root", "", "aula9");
+
+  AlunoDAO::save($db, 'Frajola');
 
   var_dump($db);
   echo '<br>';
