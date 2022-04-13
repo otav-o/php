@@ -22,7 +22,6 @@ class AlunoDAO
 
   public static function save($conexao, $nome)
   {
-    # TODO: implementar para a próxima aula. 
     $query = "INSERT INTO alunos(nome) VALUES ('$nome')";
     echo $query; // fazer isso para verificar se a query está derta (geralmente os problemas são aqui). Vai imprimir exatamente como a query vai sair
     die();

@@ -10,9 +10,32 @@ if (isset($_POST['acao'])) {
   $cidade = $_POST['cidade'];
   $recado = $_POST['recado'];
 
-  if (Recado::novo($nome, $email, $cidade, $estado)) {
+  if (Recado::novo($nome, $email, $cidade, $recado)) {
     echo 'Recado cadastrado';
-  };
+  } else if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    if (Recado::excluir($id)) {
+      echo 'Recado apagado!';
+    }
+  } else if (isset($_GET['alterar'])) {
+    $id = $_GET['alterar'];
+    $recado = Recado::retornaRecado($id);
+
+    $nome = $recado->retornaCampo('nome');
+    $email = $recado->retornaCampo('email');
+    $cidade = $recado->retornaCampo('cidade');
+    $mensagem = $recado->retornaCampo('recado');
+  } else if (isset($_GET['atualiza'])) {
+    $id = $_GET['atualiza'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $cidade = $_POST['cidade'];
+    $recado = $_POST['recado'];
+
+    if (Recado::atualiza($id, $nome, $email, $cidade, $recado)) {
+      echo 'Recado alterado';
+    }
+  }
 }
 
 ?>
@@ -38,26 +61,32 @@ if (isset($_POST['acao'])) {
 
 <body>
   <h1 class='h1'>Atividade 11/04/2022</h1>
-  <form action="" method="post">
+  <form action="<?= isset($id) ? 'index.php?atualiza=' . $id : 'index.php' ?>" method="post">
     <div class="mb-3">
       <label for="nome" class="form-label">Nome:</label>
-      <input type="text" class="form-control" id="nome" name="nome">
+      <input type="text" class="form-control" id="nome" name="nome" value="<?= $nome ?? '' ?>">
+      <!-- ternário com duas interrogações checa se é null (if issset()), aplicando um default se der fals) -->
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" name="email">
+      <input type="email" class="form-control" id="email" name="email" value="<?= $email ?? '' ?>">
     </div>
     <div class="mb-3">
       <label for="cidade" class="form-label">Cidade:</label>
-      <input type="text" class="form-control" id="cidade" name="cidade">
+      <input type="text" class="form-control" id="cidade" name="cidade" value="<?= $cidade ?? '' ?>">
     </div>
     <div class="mb-3">
       <label for="recado" class="form-label">Recado:</label>
       <textarea class="form-control" id="recado" rows="3" name="recado"></textarea>
-      <input type="text" class="form-control" id="recado" name="recado">
+      <input type="text" class="form-control" id="recado" name="recado" value="<?= $mensagem ?? '' ?>">
     </div>
-    <input type="submit" name="acao">
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <input type="submit" name="cadastrar" value="<?= isset($id) ? 'Atualizar' : 'Cadastrar' ?>">
   </form>
+
+  <?php
+  Recado::exibeRecados();
+  ?>
 </body>
 
 </html>
