@@ -6,6 +6,10 @@
   Strict, notice, warnings, error  (sugestẽs de melhoria, pode produzier um resultado inesperado, erro em tempo de execução não fatal, erro fatal)
 
 
+  $x = $y + 3; // E_NOTICE;
+$fh = fopen('arquivonaoexistente', 'r'); // E_WARNING
+funcaoNaoExiste(); // E_ERROR
+
   php.ini -> arquivo de configuração que fica noservidor e contém todas as diretivas para o funcioanmento do php. Tem desativado o "display_errors", já que em produção ele deveria estar desativado mesmo 
       deixar display_errors = On
 

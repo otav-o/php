@@ -14,10 +14,14 @@ $i = new No('I');
 $j = new No('J');
 $k = new No('K');
 
-$a->setFilhos(array($b, $c, $d));
-$b->setFilhos(array($e, $f));
-$c->setFilhos(array($g, $h));
-$d->setFilhos(array($i, $j, $k));
+$s->setFilhos(array('3.1' => $a, '4.9' => $d));
+$a->setFilhos(array('3.1' => $b));
+$b->setFilhos(array('3.5' => $c, '5.1' => $f));
+$c->setFilhos(array('4.8' => $t));
+$d->setFilhos(array('2.2' => $e));
+$e->setFilhos(array('2.2' => $f));
+$f->setFilhos(array('2.2' => $g));
+$g->setFilhos(array('2.5' => $t));
 
 $arvore = new Arvore($a);
 
@@ -28,8 +32,3 @@ foreach ($ordem as $no) {
 //$arvore->buscaLargura('G');
 //$arvore->buscaProfundidade('H');
 $arvore->imprimeArvore();
-
-
-function buscaMelhorEscolha(No $origem, No $meta, $distancia) {
-  var fila = new Fila
-}

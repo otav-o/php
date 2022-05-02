@@ -9,9 +9,9 @@ class No
     {
         $this->valor = $valor;
     }
-    public function adicionarFilho(No $filhos)
+    public function adicionarFilho(No $filho, $custoAteFilho)
     {
-        $this->filhos[] = $filhos;
+        $this->filhos["$custoAteFilho"] = $filho; // array associativo
     }
     public function getValor()
     {
