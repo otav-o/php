@@ -10,6 +10,8 @@
 
 <body>
   <h1> O HelloWorldController chamou esta view</h1>
+  <p><a href="/hello-world">HOME</a></p>
+  <p><a href="{{route('ola-nome')}}">HOME</a></p>
 </body>
 
 </html>

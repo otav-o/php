@@ -12,4 +12,14 @@ class HelloWorldController extends Controller
         echo $text;
         return view('hello_world.index'); // nomeDaPasta.index
     }
+
+    public function retornaId($id)
+    {
+        return $id + 1;
+    }
+
+    public function retornaId2($id = 0)
+    {
+        return $id + 2;
+    }
 }
