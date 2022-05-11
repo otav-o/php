@@ -120,7 +120,7 @@
 
 - **Nicknames** para as rotas: servem para não ter que atualizar as referências toda vez que uma rota for modificada.
   
-  - Basta colocar ->name('alias-da-rota')
+  - Basta colocar -> name('alias-da-rota')
   
   - ```php
     Route::get('ola', [HelloWorldController::class, 'index'])->name('ola-nome');
@@ -157,4 +157,80 @@
     });
     ```
 
-    
+
+### Resource Controller
+
+- Controller como recurso
+
+  - Alguns controllers existem apenas para CRUD
+
+- >  php artisan make:controller UserController --resource
+
+  - com o --resource, já cria os métodos do crud (index, create, store, show, edit, update, destroy)
+
+  - Outra diferença: colocar uma rota específica para o resource
+
+  - ```php
+    Route::resource('/user', UserController::class); // web.php
+    ```
+
+### Single Action Controllers
+
+- Método mágico invoke()
+
+  - Todos os métodos mágicos começam com `__`
+
+- Não precisa chamar o método quando registrar a rota
+
+  - ```php
+    Route::get('/', IndexController::class)
+    ```
+
+### Criação de um formulário
+
+- Observe que é um formulário como qualquer outro, com a diferença de ter um `echo csrf_field()` ou `@csrf` para permitir o método POST e de existir uma rota no action.
+
+  - A rota é criada no routes\web.php, e pode ser feita assim:
+
+    - ```php
+      Route::prefix('admin')->namespace('admin')->group(function () {
+          Route::prefix('posts')->name('posts.')->group(function () {
+              Route::get('/create', [PostController::class, 'create'])->name('create');
+              Route::post('/store', [PostController::class, 'store'])->name('store');
+          });
+      });
+      ```
+
+    - Significa que há o grupo/prefixo admin na URI. Dentro dele, há outro grupo posts. Este é nomeado com `posts.` e possuem duas rotas: create e store. A primeira chama o método create do PostController e tem o nome create.
+
+    - Lembrando da importância dos nomes: se a rota e o prefixo mudarem, só precisa alterar neste ponto do código, pois os nomes vão referenciar as novas rotas automaticamente (para links)
+
+  - ```php+HTML
+    <body>
+        <form action="{{route('posts.store')}}" method="post">
+            <!-- cria um token para não ser rejeitado (cross validation) -->
+            @csrf
+            <!-- ou -->
+            <?php echo csrf_field() ?>
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Descrição:</label>
+                <input type="text" name="description" id="description" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="content">Conteúdo</label>
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="slug">Slug:</label>
+                <input type="text" name="slug" id="slug" class="form-control">
+            </div>
+            <button class="btn btn-lg btn-success">Criar postagem</button>
+        </form>
+    </body>
+    ```
+
+- Observações extras: Blade é o criador de templates; Os controllers ficam em App -> http -> controllers; CSRF - Cross Validation é um recurso de segurança.

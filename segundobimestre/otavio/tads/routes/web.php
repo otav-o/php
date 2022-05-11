@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,43 @@ use App\Http\Controllers\HelloWorldController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// IndexController é single action, significa que não precisa passar o método.
+Route::get('/', IndexController::class);
+
+Route::resource('/user', UserController::class);
+
+// criar um grupo
+// definir o namespace para ele encontrar a pasta
+// lembrar de colocar um . em um dos names, para ele combinar as strings e criar as rotas posts.create e posts.store
+Route::prefix('admin')->namespace('admin')->group(function () {
+    Route::prefix('posts')->name('posts.')->group(function () {
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::post('/store', [PostController::class, 'store'])->name('store');
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // rota, nomeController@metodo
 Route::get('hello-world', [HelloWorldController::class], 'index');
@@ -32,7 +69,7 @@ Route::any('teste-any', function () {
 });
 
 // Sem precisar criar um controller, usando a função de callback para exibir uma view.
-Route::view('boas-vindas', 'hello-world.index');
+Route::view('boas-vindas', 'hello_world.index');
 
 
 // Receber parâmetro da url pela função de callback: usar o nome da variável igual
