@@ -26,7 +26,10 @@ Route::resource('/user', UserController::class);\
 // definir o namespace para ele encontrar a pasta
 // lembrar de colocar um . em um dos names, para ele combinar as strings e criar as rotas posts.create e posts.store
 Route::prefix('admin')->namespace('admin')->group(function () {
-    Route::get('teste', function())
+    Route::prefix('recados')->name('recados.')->group(function() {
+        Route::get('/create', [RecadoController::class, 'create'])->name('create');
+        Route::post('/store', [RecadoController::class, 'store'])->name('store');
+    })
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::get('/create', [PostController::class, 'create'])->name('create');
         Route::post('/store', [PostController::class, 'store'])->name('store');

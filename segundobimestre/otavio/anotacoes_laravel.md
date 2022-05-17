@@ -234,3 +234,6 @@
     ```
 
 - Observações extras: Blade é o criador de templates; Os controllers ficam em App -> http -> controllers; CSRF - Cross Validation é um recurso de segurança.
+
+
+php artisan make:controller Admin\RecadoController

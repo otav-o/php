@@ -65,6 +65,14 @@ class PostController extends Controller
         // Após realizar as ações, pode redirecionar para uma página
         return redirect('/')
 
-        return redirect()->route('home')
+        return redirect()->route('home');
+
+        // voltar para a tela anterior
+        return back();
+
+        // voltar com os dados
+        // É comum quando se usa o PHP para validar os dados, e mandar o usuário corrigir.
+        // tem que colocar value="{{old('title')}}" para os campos que serão retornados preenchidoss
+        return back()->withInput();
     }
 }
