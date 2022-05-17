@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <form action="{{route('posts.store')}}" method="post">
+  <form action="{{route('posts.store')}}?armazena=true" method="post">
+    <!-- armazena=true é enviar algo via get. Chega ne request pelo $request->query() -->
     <!-- cria um token para não ser rejeitado (cross validation) -->
     @csrf
     <!-- ou -->
