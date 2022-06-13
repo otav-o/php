@@ -271,3 +271,4 @@ public function index() {
 
 
 > 06/06/2022, segunda
+php artisan make:controller Admin\RecadoController

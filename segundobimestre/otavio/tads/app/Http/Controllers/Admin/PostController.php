@@ -27,5 +27,52 @@ class PostController extends Controller
         // dump and die
         // all pega todos os campos do request
         dd($request->all());
+        dd($request->title);
+        dd($request->input('title'));
+        dd($request->descricao);
+        dd($request->input('description'));
+
+        if ($request->has('title')) {
+            echo $request->title;
+            dd($request->title);
+            // imprime mesmo se estiver null. Não lida com o vazio, apenas analisa se existe o campo
+        }
+
+        if ($request->hasAny(['title', 'content', 'slug'])) {
+            // o mesmo que o de cima, mas verifica mais de um por vez.
+        }
+
+        $request->only();
+        $request->except();
+
+        if ($request->only(['title', 'slug'])) {
+
+        }
+
+        if ($request->has('title')) {
+            dd($request->query('armazena'));
+            // query() retorna null se o parâmetro não veio por GET, e sim POST
+        }
+
+        // api que retorna mensagem
+        return response('Retorno do request', 200);
+
+        // api que retorna json
+
+        // é possível passar um cookie e sua validade
+        return response('Retorno do tipo json', 200)->cookie()
+
+        // Após realizar as ações, pode redirecionar para uma página
+        return redirect('/')
+
+        return redirect()->route('home');
+
+        // voltar para a tela anterior
+        return back();
+
+        // voltar com os dados
+        // É comum quando se usa o PHP para validar os dados, e mandar o usuário corrigir.
+        // tem que colocar value="{{old('title')}}" para os campos que serão retornados preenchidoss
+        return back()->withInput();
     }
 }

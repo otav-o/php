@@ -20,18 +20,23 @@ use App\Http\Controllers\IndexController;
 // IndexController é single action, significa que não precisa passar o método.
 Route::get('/', IndexController::class);
 
-Route::resource('/user', UserController::class);
+Route::resource('/user', UserController::class);\
 
 // criar um grupo
 // definir o namespace para ele encontrar a pasta
 // lembrar de colocar um . em um dos names, para ele combinar as strings e criar as rotas posts.create e posts.store
 Route::prefix('admin')->namespace('admin')->group(function () {
+    Route::prefix('recados')->name('recados.')->group(function() {
+        Route::get('/create', [RecadoController::class, 'create'])->name('create');
+        Route::post('/store', [RecadoController::class, 'store'])->name('store');
+    })
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::get('/create', [PostController::class, 'create'])->name('create');
         Route::post('/store', [PostController::class, 'store'])->name('store');
     });
 });
 
+Route::resource('/user', UserController::class);\
 
 
 

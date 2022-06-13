@@ -9,26 +9,27 @@
 </head>
 
 <body>
-  <form action="{{route('posts.store')}}" method="post">
+  <form action="{{route('posts.store')}}?armazena=true" method="post">
+    <!-- armazena=true é enviar algo via get. Chega ne request pelo $request->query() -->
     <!-- cria um token para não ser rejeitado (cross validation) -->
     @csrf
     <!-- ou -->
     <?php echo csrf_field() ?>
     <div class="form-group">
       <label for="title">Título:</label>
-      <input type="text" name="title" id="title" class="form-control">
+      <input type="text" name="title" id="title" class="form-control" value="{{old('title')}}">
     </div>
     <div class="form-group">
       <label for="description">Descrição:</label>
-      <input type="text" name="description" id="description" class="form-control">
+      <input type="text" name="description" id="description" class="form-control" value="{{old('description')}}">
     </div>
     <div class="form-group">
       <label for="content">Conteúdo</label>
-      <textarea name="content" id="content" cols="30" rows="10"></textarea>
+      <textarea name="content" id="content" cols="30" rows="10" value="{{old('textarea')}}"></textarea>
     </div>
     <div class="form-group">
       <label for="slug">Slug:</label>
-      <input type="text" name="slug" id="slug" class="form-control">
+      <input type="text" name="slug" id="slug" class="form-control" value="{{old('slug')}}">
     </div>
     <button class="btn btn-lg btn-success">Criar postagem</button>
   </form>
