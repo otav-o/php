@@ -234,3 +234,40 @@
     ```
 
 - Observações extras: Blade é o criador de templates; Os controllers ficam em App -> http -> controllers; CSRF - Cross Validation é um recurso de segurança.
+
+
+> php artisan migrate:install
+  - Executa o que está no up
+
+> php artisan migrate:rollback 
+  - Executa o que está no down
+  - Desfaz a última migração feita.
+
+> php artisan make:migration create_table_posts --create=posts
+  - as migrações têm a data e o timestamp no nome
+  - $table->timestamps() no método u cria duas colunas: created_at e updated_at. Serve para controle dos registros.
+
+> php artisan migrate
+  - Executa a mnigração
+
+
+---
+24/05/2022
+
+### Eloquent
+- ORM do Laravel
+- Criar o model com o nome da tabela só que em singular.
+  - Se não for seguir o padrão, usar `protected $table = 'post';`
+
+```php
+// Na PostController
+public function index() {
+    dd(Post::all()); // dump and die
+}
+
+
+```
+
+
+
+> 06/06/2022, segunda
